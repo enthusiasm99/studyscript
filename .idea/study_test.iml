@@ -3,7 +3,7 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$" />
     <content url="file://E:/快盘/002-study/Python/Code" />
-    <orderEntry type="jdk" jdkName="Python 3.5.1 (D:\Python35\python.exe)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.6.4 (D:\ProgramData\Anaconda3\python.exe)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TestRunnerService">
