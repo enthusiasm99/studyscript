@@ -6,6 +6,7 @@ res = requests.get("http://news.sina.com.cn/c/nd/2018-01-30/doc-ifyremfz2269397.
 res.encoding = 'utf-8'
 '''print(res.text)'''
 soup = BeautifulSoup(res.text, 'html.parser')
+print("soup")
 
 '''print(soup.select('.main-title')[0].text)
 print(soup.select('.date')[0].text)
