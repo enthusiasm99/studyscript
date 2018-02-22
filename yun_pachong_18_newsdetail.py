@@ -9,6 +9,8 @@ def getCommentCount(newsurl):
     newsid = tempid.group(1)
     comments = requests.get(commentsURL.format(newsid))
     jd = json.loads(comments.text)
+    count = jd['result']['count']['show']
+    return count
     #print(jd['result']['count']['show'])
 
 def getNewsDetail(newsurl):
@@ -17,12 +19,13 @@ def getNewsDetail(newsurl):
     res.encoding = 'utf-8'
     soup = BeautifulSoup(res.text, 'html.parser')
     result['title'] = soup.select('.main-title')[0].text
-    time = soup.select('.time-source')[0].content[0].strip()
-    result['dtime'] = datetime.strptime(time, '%Y年%m月%d日 %H:%M')
     result['source'] = soup.select('.source')[0].text
-    result['articel'] = ' '.join([p.text.strip() for p in soup.select('#article p')[:-3]])
+    time = soup.select('.date')[0].text
+    result['dtime'] = datetime.strptime(time, '%Y年%m月%d日 %H:%M')
     result['editor']  = soup.select('.show_author')[0].text.lstrip('责任编辑：')
     result['comment']  = getCommentCount(newsurl)
+    result['articel'] = ' '.join([p.text.strip() for p in soup.select('#article p')[:-3]])
+
     return result
 
 commentsURL ="http://comment5.news.sina.com.cn/page/info?version=1&format=json\
@@ -31,4 +34,7 @@ commentsURL ="http://comment5.news.sina.com.cn/page/info?version=1&format=json\
 &t_size=3&h_size=3&thread=1"
 
 news = "http://news.sina.com.cn/c/nd/2018-01-30/doc-ifyremfz2269397.shtml"
-getNewsDetail(news)
+detail = getNewsDetail(news).items()
+
+for key, value in detail:
+    print(key, ':', value)
