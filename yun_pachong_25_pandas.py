@@ -12,7 +12,7 @@ def getCommentCount(newsurl):
     jd = json.loads(comments.text)
     count = jd['result']['count']['show']
     return count
-    #print(jd['result']['count']['show'])
+    #print(jd['result']['count']['show'])123
 
 def getNewsDetail(newsurl):
     result = {}
